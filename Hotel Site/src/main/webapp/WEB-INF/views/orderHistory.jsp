@@ -15,7 +15,7 @@
             <div class="container text-right">
                 <br><br><br>
                 <form action="<c:url value="profile"/>">
-                    <button type="submit" class="btn btn-lg" style="background: #D2B48C">All suggestion</button>
+                    <button type="submit" class="btn btn-lg" style="background: #D2B48C">Back</button>
                 </form>
             </div>
             <div class="container">

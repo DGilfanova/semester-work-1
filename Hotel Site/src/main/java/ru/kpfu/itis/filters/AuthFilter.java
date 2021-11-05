@@ -35,7 +35,7 @@ public class AuthFilter implements Filter {
             User user = (User) session.getAttribute(Constants.USER_SESSION_ATTRIBUTE_NAME);
             String userRole = securityService.findUserRole(user.getUuid().toString());
             if (userRole.equals("guest")) {
-                request.setAttribute("auth", true);
+                request.setAttribute(Constants.AUTH_ATTRIBUTE_NAME, true);
                 filterChain.doFilter(request, response);
             } else {
                 securityService.logout(request, response, session);

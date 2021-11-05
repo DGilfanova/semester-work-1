@@ -11,6 +11,7 @@ public class Constants {
     public final static String BOOKING_ATTRIBUTE_NAME = "booking";
     public final static String ERROR_ATTRIBUTE_NAME = "error";
     public final static String EDIT_PROFILE_ATTRIBUTE_NAME = "editProfile";
+    public final static String AUTH_ATTRIBUTE_NAME = "auth";
 
     public final static String DEFAULT_USER_ROLE = "user";
 

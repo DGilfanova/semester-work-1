@@ -1,7 +1,6 @@
 package ru.kpfu.itis.servlets;
 
 import ru.kpfu.itis.entities.Order;
-import ru.kpfu.itis.entities.Suggestion;
 import ru.kpfu.itis.services.OrderService;
 
 import javax.servlet.ServletConfig;
