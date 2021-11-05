@@ -14,7 +14,7 @@
     <div class="container-fluid" style="max-width: 60%">
         <div class="row centered">
             <div class="container">
-                <br><br><br>
+                <br><br><br><br><br><br>
                 <h1 style="text-align: center">Rooms/suites</h1>
                 <br><br>
             </div>

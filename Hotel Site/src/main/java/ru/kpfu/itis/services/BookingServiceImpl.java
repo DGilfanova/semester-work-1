@@ -50,7 +50,7 @@ public class BookingServiceImpl implements BookingService {
         }
 
         UUID reservationNumber = UUID.randomUUID();
-        booking.setReservationNumber(reservationNumber);
+        booking.setReservationNumber(reservationNumber.toString());
 
         booking.setUser(User.builder().uuid(userUuid).build());
 
@@ -64,7 +64,8 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public Booking retrieveBooking(RetrieveBookingForm retrieveBookingForm) {
-        if (retrieveBookingForm.getReservationNumber() == null || retrieveBookingForm.getEmail() == null || retrieveBookingForm.getLastName() == null) {
+        if (retrieveBookingForm.getReservationNumber().equals("") || retrieveBookingForm.getEmail().equals("")
+                || retrieveBookingForm.getLastName().equals("") || retrieveBookingForm.getReservationNumber().length() > 36) {
             throw new EmptyFieldException("Please fill all fields.");
         }
 

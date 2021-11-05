@@ -55,7 +55,7 @@ public class RetrieveBookingServlet extends HttpServlet {
         catch (NoSuchElementInBaseException | InvalidEnteredDataException | EmptyFieldException e) {
             request.setAttribute(Constants.ERROR_ATTRIBUTE_NAME, e.getMessage());
             request.setAttribute("form", retrieveBookingForm);
-            request.getRequestDispatcher("/WEB-INF/views/retrievebooking.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/retrieveBooking.jsp").forward(request, response);
         }
     }
 }

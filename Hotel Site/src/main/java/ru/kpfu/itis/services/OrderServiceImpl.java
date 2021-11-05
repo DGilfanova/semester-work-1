@@ -69,7 +69,7 @@ public class OrderServiceImpl implements OrderService {
         }
 
         Timestamp currentDate = new Timestamp(new Date().getTime());
-        if (bookingsRepository.findBookingSatisfyingOrderDate(userUuid.toString(), order.getDate(), currentDate).size() != 0) {
+        if (bookingsRepository.findBookingSatisfyingOrderDate(userUuid.toString(), order.getDate(), currentDate).size() == 0) {
             throw new InvalidEnteredDataException("You ordered the service not during your stay at the hotel");
         }
 
@@ -88,7 +88,7 @@ public class OrderServiceImpl implements OrderService {
         }
 
         Timestamp currentDate = new Timestamp(new Date().getTime());
-        if (bookingsRepository.findBookingSatisfyingOrderDate(findUserUuid(session).toString(), order.getDate(), currentDate).size() != 0) {
+        if (bookingsRepository.findBookingSatisfyingOrderDate(findUserUuid(session).toString(), order.getDate(), currentDate).size() == 0) {
             throw new InvalidEnteredDataException("You ordered the service not during your stay at the hotel");
         }
 

@@ -19,9 +19,9 @@ import java.util.UUID;
 public class BookingsRepositoryJdbcTemplateImpl implements BookingsRepository {
 
     private final static String SQL_INSERT = "insert into booking (reservation_number, user_uuid, " +
-            "room_number, arrival_date, departure_date) values (?::uuid, ?::uuid, ?, ?, ?)";
+            "room_number, arrival_date, departure_date) values (?, ?::uuid, ?, ?, ?)";
 
-    private final static String SQL_SELECT_BY_RESERVATION_NUMBER = "select * from booking b join users u on b.user_uuid = u.uuid where reservation_number=?::uuid";
+    private final static String SQL_SELECT_BY_RESERVATION_NUMBER = "select * from booking b join users u on b.user_uuid = u.uuid where reservation_number=?";
 
     private final static String SQL_SELECT_SAME_TIME_BOOKING = "select * from booking b join room r on r.number = b.room_number " +
             "where r.number=? and ((?>b.arrival_date and ?<b.departure_date) or (?<b.departure_date and ?>b.arrival_date))";
@@ -36,7 +36,7 @@ public class BookingsRepositoryJdbcTemplateImpl implements BookingsRepository {
     }
 
     private final RowMapper<Booking> bookingRowMapper = (row, rowNumber) -> Booking.builder()
-            .reservationNumber(UUID.fromString(row.getString("reservation_number")))
+            .reservationNumber(row.getString("reservation_number"))
             .user(User.builder()
                     .uuid(UUID.fromString(row.getString("user_uuid")))
                     .firstName(row.getString("first_name"))
@@ -44,6 +44,16 @@ public class BookingsRepositoryJdbcTemplateImpl implements BookingsRepository {
                     .patronymic(row.getString("patronymic"))
                     .passportNumber(row.getString("passport_number"))
                     .email(row.getString("email"))
+                    .build())
+            .room(Room.builder().number(row.getInt("room_number")).build())
+            .arrivalDate(row.getTimestamp("arrival_date"))
+            .departureDate(row.getTimestamp("departure_date"))
+            .build();
+
+    private final RowMapper<Booking> simpleBookingRowMapper = (row, rowNumber) -> Booking.builder()
+            .reservationNumber(row.getString("reservation_number"))
+            .user(User.builder()
+                    .uuid(UUID.fromString(row.getString("user_uuid")))
                     .build())
             .room(Room.builder().number(row.getInt("room_number")).build())
             .arrivalDate(row.getTimestamp("arrival_date"))
@@ -68,11 +78,11 @@ public class BookingsRepositoryJdbcTemplateImpl implements BookingsRepository {
 
     @Override
     public List<Booking> findSameTimeBooking(Integer roomNumber, Timestamp arrivalDate, Timestamp departureDate) {
-        return jdbcTemplate.query(SQL_SELECT_SAME_TIME_BOOKING, bookingRowMapper, roomNumber, arrivalDate, arrivalDate, departureDate, departureDate);
+        return jdbcTemplate.query(SQL_SELECT_SAME_TIME_BOOKING, simpleBookingRowMapper, roomNumber, arrivalDate, arrivalDate, departureDate, departureDate);
     }
 
     @Override
     public List<Booking> findBookingSatisfyingOrderDate(String userUuid, Timestamp orderDate, Timestamp currentDate) {
-        return jdbcTemplate.query(SQL_SELECT_BOOKING_SATISFYING_ORDER_DATE, bookingRowMapper, userUuid, orderDate, currentDate);
+        return jdbcTemplate.query(SQL_SELECT_BOOKING_SATISFYING_ORDER_DATE, simpleBookingRowMapper, userUuid, orderDate, currentDate);
     }
 }

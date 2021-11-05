@@ -13,13 +13,13 @@
     <div class="container-fluid" style="max-width: 60%">
         <div class="row centered">
             <div class="container text-right">
-                <br><br><br>
+                <br><br><br><br><br><br>
                 <form action="<c:url value="profile"/>">
                     <button type="submit" class="btn btn-lg" style="background: #D2B48C">Back</button>
                 </form>
             </div>
             <div class="container">
-                <h1 style="text-align: center">Orders History</h1><hr>
+                <h1 style="text-align: center">Orders History</h1>
                 <br>
             </div>
 

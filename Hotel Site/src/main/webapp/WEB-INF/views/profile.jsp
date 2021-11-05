@@ -13,9 +13,9 @@
         <div class="container-fluid" style="max-width: 60%">
             <div class="row centered">
                 <div class="container text-right">
-                    <br><br><br><br>
+                    <br><br><br><br><br><br>
                     <c:if test = "${not empty user}">
-                        <h3 style="text-align: center">Welcome ${user.lastName} ${user.firstName}!</h3>
+                        <h1 style="text-align: center">Welcome ${user.lastName} ${user.firstName}!</h1>
                     </c:if>
                     <br>
                     <form action="<c:url value="showorders"/>">

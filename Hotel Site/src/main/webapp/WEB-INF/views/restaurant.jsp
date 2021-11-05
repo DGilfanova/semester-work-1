@@ -15,7 +15,7 @@
             <div class="row centered">
                 <div class="container 2">
                     <p><a id="ref_rest"></a></p>
-                    <br><br><br>
+                    <br><br><br><br><br><br>
                     <h1>Restaurants</h1>
                     <br>
                 </div>

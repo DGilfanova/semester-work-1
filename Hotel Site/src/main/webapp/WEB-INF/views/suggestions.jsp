@@ -14,7 +14,7 @@
     <div class="container-fluid" style="max-width: 60%">
     <div class="row centered">
     <div class="container text-right">
-    <br><br><br>
+    <br><br><br><br><br><br>
     </div>
     <div class="container">
     <h1 style="text-align: center">All suggestions</h1>
